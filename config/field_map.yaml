@@ -1,0 +1,38 @@
+# Field dictionary: target_sheet_field -> list of label patterns (regex) + normalizer
+# NOTE: Fill these with your real variants from AD + 10/19 example.
+
+fields:
+  guest_names:
+    labels: ["Guest(?:s)?", "Primary Guest", "Name"]
+    normalizer: person_list
+  arrival_date:
+    labels: ["Arrival Date", "Arrival:", "Check-?in"]
+    normalizer: date_mdy
+  departure_date:
+    labels: ["Departure Date", "Departure:", "Check-?out"]
+    normalizer: date_mdy
+  room_type:
+    labels: ["Room Type", "Accommodation", "Unit"]
+    normalizer: room_type
+  room_number:
+    labels: ["Room #", "Room Number", "Rm:"]
+    normalizer: passthrough
+  nights:
+    labels: ["Nights", "Length of Stay"]
+    normalizer: int_cast
+  harvest_time:
+    labels: ["Harvest", "Dinner at Harvest", "Restaurant Reservation", "Dinner"]
+    normalizer: time_12h_range
+  occasion:
+    labels: ["Occasion", "Special Occasion", "Celebrat(ion|ing)"]
+    normalizer: sentence
+  allergies:
+    labels: ["Allerg(ies|y)", "Dietary", "Restrictions"]
+    normalizer: sentence
+  transportation:
+    labels: ["Transportation", "Transfer", "Black Car|Helicopter|Shuttle"]
+    normalizer: sentence
+  activities:
+    labels: ["Activities", "Itinerary", "Experiences", "Spa"]
+    normalizer: activities_block
+
